@@ -26,5 +26,5 @@ jobs:
           pull: true
           push: true
           # cache-from: type=registry,ref=myorg/myrepository:latest
-          # cache-to: type=inline
+          # cache-to: type=inline 
           tags: ghcr.io/guibitar/sistema_programa_de_gestao_susep/sgd:v1.8
