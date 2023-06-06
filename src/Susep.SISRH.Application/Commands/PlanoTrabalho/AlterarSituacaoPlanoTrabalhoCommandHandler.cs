@@ -28,14 +28,14 @@ namespace Susep.SISRH.Application.Commands.PlanoTrabalho
         private IOptions<EmailOptions> EmailConfiguration { get; }
 
         public AlterarSituacaoPlanoTrabalhoCommandHandler(
-            IPlanoTrabalhoRepository planoTrabalhoRepository,
+            IPlanoTrabalhoSimplesRepository planoTrabalhoSimplesRepository,
             IUnitOfWork unitOfWork,
             IEmailHelper emailHelper,
             IUnidadeQuery unidadeQuery,
             IOptions<PadroesOptions> configuration,
             IOptions<EmailOptions> emailConfiguration)
         {
-            PlanoTrabalhoRepository = planoTrabalhoRepository;
+            PlanoTrabalhoSimplesRepository = planoTrabalhoSimplesRepository;
             UnitOfWork = unitOfWork;
             EmailHelper = emailHelper;
             UnidadeQuery = unidadeQuery;
@@ -48,7 +48,7 @@ namespace Susep.SISRH.Application.Commands.PlanoTrabalho
             ApplicationResult<bool> result = new ApplicationResult<bool>(request);
 
             //Monta o objeto com os dados do catalogo
-            var item = await PlanoTrabalhoRepository.ObterAsync(request.PlanoTrabalhoId);
+            var item = await PlanoTrabalhoSimplesRepository.ObterAsync(request.PlanoTrabalhoId);
 
             try
             {
@@ -61,7 +61,7 @@ namespace Susep.SISRH.Application.Commands.PlanoTrabalho
                     item.AlterarSituacao(request.SituacaoId, request.UsuarioLogadoId.ToString(), request.Observacoes);
 
                 //Altera o item de catalogo no banco de dados
-                PlanoTrabalhoRepository.Atualizar(item);
+                PlanoTrabalhoSimplesRepository.Atualizar(item);
                 UnitOfWork.Commit(false);
 
                 //Notifica os envolvidos
