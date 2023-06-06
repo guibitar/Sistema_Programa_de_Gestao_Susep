@@ -28,14 +28,14 @@ namespace Susep.SISRH.Application.Commands.PlanoTrabalho
         private IOptions<EmailOptions> EmailConfiguration { get; }
 
         public AlterarSituacaoPlanoTrabalhoCommandHandler(
-            IPlanoTrabalhoSimplesRepository planoTrabalhoSimplesRepository,
+            IPlanoTrabalhoRepository planoTrabalhoRepository,
             IUnitOfWork unitOfWork,
             IEmailHelper emailHelper,
             IUnidadeQuery unidadeQuery,
             IOptions<PadroesOptions> configuration,
             IOptions<EmailOptions> emailConfiguration)
         {
-            PlanoTrabalhoSimplesRepository = planoTrabalhoSimplesRepository;
+            PlanoTrabalhoSimplesRepository = planoTrabalhoRepository;
             UnitOfWork = unitOfWork;
             EmailHelper = emailHelper;
             UnidadeQuery = unidadeQuery;
