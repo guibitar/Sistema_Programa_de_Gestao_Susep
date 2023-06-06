@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Susep.SISRH.Infrastructure.Repositories
 {
-    public class PlanoTrabalhoSimplesRepository : SqlServerRepository<PlanoTrabalho>, IPlanoTrabalhoSimplesRepository
+    public class PlanoTrabalhoSimplesRepository : SqlServerRepository<PlanoTrabalho>, IPlanoTrabalhoRepository
     {
         private readonly SISRHDbContext _context;
 
