@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Susep.SISRH.Application.Options;
@@ -35,7 +35,7 @@ namespace Susep.SISRH.Application.Commands.PlanoTrabalho
             IOptions<PadroesOptions> configuration,
             IOptions<EmailOptions> emailConfiguration)
         {
-            PlanoTrabalhoSimplesRepository = planoTrabalhoRepository;
+            PlanoTrabalhoRepository = planoTrabalhoRepository;
             UnitOfWork = unitOfWork;
             EmailHelper = emailHelper;
             UnidadeQuery = unidadeQuery;
@@ -48,7 +48,7 @@ namespace Susep.SISRH.Application.Commands.PlanoTrabalho
             ApplicationResult<bool> result = new ApplicationResult<bool>(request);
 
             //Monta o objeto com os dados do catalogo
-            var item = await PlanoTrabalhoSimplesRepository.ObterAsync(request.PlanoTrabalhoId);
+            var item = await PlanoTrabalhoRepository.ObterAsync(request.PlanoTrabalhoId);
 
             try
             {
@@ -61,7 +61,7 @@ namespace Susep.SISRH.Application.Commands.PlanoTrabalho
                     item.AlterarSituacao(request.SituacaoId, request.UsuarioLogadoId.ToString(), request.Observacoes);
 
                 //Altera o item de catalogo no banco de dados
-                PlanoTrabalhoSimplesRepository.Atualizar(item);
+                PlanoTrabalhoRepository.Atualizar(item);
                 UnitOfWork.Commit(false);
 
                 //Notifica os envolvidos
