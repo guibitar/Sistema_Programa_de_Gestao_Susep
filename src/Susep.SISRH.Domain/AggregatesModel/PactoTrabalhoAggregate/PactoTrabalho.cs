@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Susep.SISRH.Domain.AggregatesModel.CatalogoAggregate;
 using Susep.SISRH.Domain.AggregatesModel.PessoaAggregate;
 using Susep.SISRH.Domain.AggregatesModel.PlanoTrabalhoAggregate;
@@ -562,10 +562,8 @@ namespace Susep.SISRH.Domain.AggregatesModel.PactoTrabalhoAggregate
         private void ValidarDatas(DateTime dataInicio, DateTime dataFim)
         {
 
-            //if (DataInicio != dataInicio && dataInicio < DateTime.Now.Date)
-              //  throw new SISRHDomainException("A data de início do plano de trabalho deve ser maior ou igual à data atual");
-             if (1 = 1)
-                throw new SISRHDomainException(this.PlanoTrabalho.DataInicio);
+            if (DataInicio != dataInicio && dataInicio < DateTime.Now.Date)
+                throw new SISRHDomainException("A data de início do plano de trabalho deve ser maior ou igual à data atual");
             
             if (dataInicio < this.PlanoTrabalho.DataInicio)
                 throw new SISRHDomainException("A data de início do plano de trabalho deve ser maior ou igual à data do programa de gestão");
