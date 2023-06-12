@@ -564,7 +564,8 @@ namespace Susep.SISRH.Domain.AggregatesModel.PactoTrabalhoAggregate
 
             //if (DataInicio != dataInicio && dataInicio < DateTime.Now.Date)
               //  throw new SISRHDomainException("A data de início do plano de trabalho deve ser maior ou igual à data atual");
-            throw new SISRHDomainException(this.PlanoTrabalho.DataInicio);
+             if (1 = 1)
+                throw new SISRHDomainException(this.PlanoTrabalho.DataInicio);
             
             if (dataInicio < this.PlanoTrabalho.DataInicio)
                 throw new SISRHDomainException("A data de início do plano de trabalho deve ser maior ou igual à data do programa de gestão");
