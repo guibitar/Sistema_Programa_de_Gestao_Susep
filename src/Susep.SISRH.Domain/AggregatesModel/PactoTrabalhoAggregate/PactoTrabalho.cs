@@ -562,9 +562,15 @@ namespace Susep.SISRH.Domain.AggregatesModel.PactoTrabalhoAggregate
         private void ValidarDatas(DateTime dataInicio, DateTime dataFim)
         {
 
-            if (DataInicio != dataInicio && dataInicio < DateTime.Now.Date)
-                throw new SISRHDomainException("A data de início do plano de trabalho deve ser maior ou igual à data atual");
+			//if (DataInicio != dataInicio && dataInicio < DateTime.Now.Date)
+              //  throw new SISRHDomainException("A data de início do plano de trabalho deve ser maior ou igual à data atual");
 
+            if (dataInicio < this.PlanoTrabalho.DataInicio)
+                throw new SISRHDomainException("A data de início do plano de trabalho deve ser maior ou igual à data de início do programa de gestão");
+				
+			if (dataFim > this.PlanoTrabalho.DataFim)
+                throw new SISRHDomainException("A data de fim do plano de trabalho deve ser menor ou igual à data de fim do programa de gestão");				
+				
             if (this.SituacaoId == (int)Enums.SituacaoPactoTrabalhoEnum.Rascunho && dataFim < DateTime.Now.Date)
                 throw new SISRHDomainException("A data de fim do plano de trabalho deve ser maior ou igual à data atual");
 
