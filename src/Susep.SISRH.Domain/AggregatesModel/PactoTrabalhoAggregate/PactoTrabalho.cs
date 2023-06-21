@@ -93,7 +93,7 @@ namespace Susep.SISRH.Domain.AggregatesModel.PactoTrabalhoAggregate
 
         public void AlterarPeriodo(DateTime dataInicio, DateTime dataFim)
         {
-            ValidarDatas(dataInicio, dataFim);
+            ValidarDatas2(dataInicio, dataFim);
 
             this.DataInicio = dataInicio;
             this.DataFim = dataFim;
@@ -562,13 +562,24 @@ namespace Susep.SISRH.Domain.AggregatesModel.PactoTrabalhoAggregate
         private void ValidarDatas(DateTime dataInicio, DateTime dataFim)
         {
 
-			//if (DataInicio != dataInicio && dataInicio < DateTime.Now.Date)
-              //  throw new SISRHDomainException("A data de início do plano de trabalho deve ser maior ou igual à data atual");
+	    if (DataInicio != dataInicio && dataInicio < DateTime.Now.Date)
+                throw new SISRHDomainException("A data de início do plano de trabalho deve ser maior ou igual à data atual");
+         
+            if (this.SituacaoId == (int)Enums.SituacaoPactoTrabalhoEnum.Rascunho && dataFim < DateTime.Now.Date)
+                throw new SISRHDomainException("A data de fim do plano de trabalho deve ser maior ou igual à data atual");
+
+            if (dataFim <= dataInicio)
+                throw new SISRHDomainException("A data de fim do plano de trabalho deve ser maior que a data de início");
+
+        }
+
+	 private void ValidarDatas2(DateTime dataInicio, DateTime dataFim)
+        {
 
             if (dataInicio < this.PlanoTrabalho.DataInicio)
                 throw new SISRHDomainException("A data de início do plano de trabalho deve ser maior ou igual à data de início do programa de gestão");
 				
-			if (dataFim > this.PlanoTrabalho.DataFim)
+	    if (dataFim > this.PlanoTrabalho.DataFim)
                 throw new SISRHDomainException("A data de fim do plano de trabalho deve ser menor ou igual à data de fim do programa de gestão");				
 				
             if (this.SituacaoId == (int)Enums.SituacaoPactoTrabalhoEnum.Rascunho && dataFim < DateTime.Now.Date)
