@@ -69,7 +69,12 @@ namespace Susep.SISRH.Application.Commands.PlanoTrabalho
                     item.AlterarSituacao(request.SituacaoId, request.UsuarioLogadoId.ToString(), request.Observacoes);
 
                 //Altera o item de catalogo no banco de dados
-                PlanoTrabalhoRepository.Atualizar(item);
+                if(request.SituacaoId != 310) {
+                    PlanoTrabalhoRepository.Atualizar(item);
+                }
+                else {
+                    PlanoTrabalhoSRepository.Atualizar(item);
+                }
                 UnitOfWork.Commit(false);
 
                 //Notifica os envolvidos
