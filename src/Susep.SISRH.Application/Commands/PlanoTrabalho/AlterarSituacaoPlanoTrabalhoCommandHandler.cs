@@ -21,6 +21,7 @@ namespace Susep.SISRH.Application.Commands.PlanoTrabalho
     public class AlterarSituacaoPlanoTrabalhoCommandHandler : IRequestHandler<AlterarSituacaoPlanoTrabalhoCommand, IActionResult>
     {
         private IPlanoTrabalhoRepository PlanoTrabalhoRepository { get; }
+        private IPlanoTrabalhoSRepository PlanoTrabalhoSRepository { get; }
         private IUnitOfWork UnitOfWork { get; }
         private IEmailHelper EmailHelper { get; }
         private IUnidadeQuery UnidadeQuery { get; }
@@ -29,6 +30,7 @@ namespace Susep.SISRH.Application.Commands.PlanoTrabalho
 
         public AlterarSituacaoPlanoTrabalhoCommandHandler(
             IPlanoTrabalhoRepository planoTrabalhoRepository,
+            IPlanoTrabalhoSRepository planoTrabalhoSRepository,
             IUnitOfWork unitOfWork,
             IEmailHelper emailHelper,
             IUnidadeQuery unidadeQuery,
@@ -36,6 +38,7 @@ namespace Susep.SISRH.Application.Commands.PlanoTrabalho
             IOptions<EmailOptions> emailConfiguration)
         {
             PlanoTrabalhoRepository = planoTrabalhoRepository;
+            PlanoTrabalhoSRepository = planoTrabalhoSRepository;
             UnitOfWork = unitOfWork;
             EmailHelper = emailHelper;
             UnidadeQuery = unidadeQuery;
@@ -48,7 +51,12 @@ namespace Susep.SISRH.Application.Commands.PlanoTrabalho
             ApplicationResult<bool> result = new ApplicationResult<bool>(request);
 
             //Monta o objeto com os dados do catalogo
-            var item = await PlanoTrabalhoRepository.ObterAsync(request.PlanoTrabalhoId);
+            if(request.SituacaoId == 310) {
+                var item = await PlanoTrabalhoSRepository.ObterAsync(request.PlanoTrabalhoId);
+            }
+            else {
+                var item = await PlanoTrabalhoRepository.ObterAsync(request.PlanoTrabalhoId);
+            }
 
             try
             {
