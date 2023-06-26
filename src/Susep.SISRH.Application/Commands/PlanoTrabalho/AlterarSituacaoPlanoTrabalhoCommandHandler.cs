@@ -50,7 +50,7 @@ namespace Susep.SISRH.Application.Commands.PlanoTrabalho
         {
             ApplicationResult<bool> result = new ApplicationResult<bool>(request);
 
-            var item = {};
+            var item;
 
             //Monta o objeto com os dados do catalogo
             if(request.SituacaoId == 310) {
