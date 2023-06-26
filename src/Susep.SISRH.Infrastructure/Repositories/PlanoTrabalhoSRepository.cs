@@ -21,6 +21,7 @@ namespace Susep.SISRH.Infrastructure.Repositories
         public async Task<PlanoTrabalho> ObterAsync(Guid id)
         {
             return await Entity
+                .Include(p => p.Unidade)
                 .FirstOrDefaultAsync(p => p.PlanoTrabalhoId == id);
         }
 
