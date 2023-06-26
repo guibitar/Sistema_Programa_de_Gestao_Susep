@@ -50,12 +50,12 @@ namespace Susep.SISRH.Application.Commands.PlanoTrabalho
         {
             ApplicationResult<bool> result = new ApplicationResult<bool>(request);
 
-            var item = await PlanoTrabalhoSRepository.ObterAsync(request.PlanoTrabalhoId);
+            //var item = await PlanoTrabalhoSRepository.ObterAsync(request.PlanoTrabalhoId);
 
             //Monta o objeto com os dados do catalogo
-            if(request.SituacaoId != 310) {
-                item = await PlanoTrabalhoRepository.ObterAsync(request.PlanoTrabalhoId);
-            }
+            //if(request.SituacaoId != 310) {
+                var item = await PlanoTrabalhoRepository.ObterAsync(request.PlanoTrabalhoId);
+            //}
             
 
             try
@@ -69,12 +69,12 @@ namespace Susep.SISRH.Application.Commands.PlanoTrabalho
                     item.AlterarSituacao(request.SituacaoId, request.UsuarioLogadoId.ToString(), request.Observacoes);
 
                 //Altera o item de catalogo no banco de dados
-                if(request.SituacaoId != 310) {
+                //if(request.SituacaoId != 310) {
                     PlanoTrabalhoRepository.Atualizar(item);
-                }
-                else {
-                    PlanoTrabalhoSRepository.Atualizar(item);
-                }
+                //}
+                //else {
+                  //  PlanoTrabalhoSRepository.Atualizar(item);
+                //}
                 UnitOfWork.Commit(false);
 
                 //Notifica os envolvidos
