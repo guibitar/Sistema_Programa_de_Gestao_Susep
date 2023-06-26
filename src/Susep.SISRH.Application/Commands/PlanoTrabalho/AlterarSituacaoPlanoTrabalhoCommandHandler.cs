@@ -48,7 +48,12 @@ namespace Susep.SISRH.Application.Commands.PlanoTrabalho
             ApplicationResult<bool> result = new ApplicationResult<bool>(request);
 
             //Monta o objeto com os dados do catalogo
-            var item = await PlanoTrabalhoRepository.ObterAsync(request.PlanoTrabalhoId);
+            if(request.SituacaoId == 310) {
+                var item = await PlanoTrabalhoRepository.ObterAsyncEncerrar(request.PlanoTrabalhoId);
+            }
+            else {
+                var item = await PlanoTrabalhoRepository.ObterAsync(request.PlanoTrabalhoId);
+            }
 
             try
             {
