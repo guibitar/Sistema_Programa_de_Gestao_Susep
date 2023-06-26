@@ -8,6 +8,8 @@ namespace Susep.SISRH.Domain.AggregatesModel.PlanoTrabalhoAggregate
     {
         Task<PlanoTrabalho> ObterAsync(Guid planoTrabalhoId);
 
+        Task<PlanoTrabalho> ObterAsyncEncerrar(Guid planoTrabalhoId)
+
         Task<PlanoTrabalho> AdicionarAsync(PlanoTrabalho item);
 
         void Atualizar(PlanoTrabalho item);
