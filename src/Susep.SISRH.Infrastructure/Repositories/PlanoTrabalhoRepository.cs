@@ -49,6 +49,12 @@ namespace Susep.SISRH.Infrastructure.Repositories
                 .FirstOrDefaultAsync(p => p.PlanoTrabalhoId == id);
         }
 
+        public async Task<PlanoTrabalho> ObterAsyncEncerrar(Guid id)
+        {
+            return await Entity
+                .FirstOrDefaultAsync(p => p.PlanoTrabalhoId == id);
+        }
+
         public async Task<PlanoTrabalho> AdicionarAsync(PlanoTrabalho item)
         {
             var result = await Entity.AddAsync(item);
