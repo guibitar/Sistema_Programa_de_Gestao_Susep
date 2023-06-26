@@ -65,6 +65,7 @@ namespace Susep.SISRH.Application.Configurations
             builder.RegisterType<PessoaRepository>().As<IPessoaRepository>().InstancePerLifetimeScope();
             builder.RegisterType<PactoTrabalhoRepository>().As<IPactoTrabalhoRepository>().InstancePerLifetimeScope();
             builder.RegisterType<PlanoTrabalhoRepository>().As<IPlanoTrabalhoRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<PlanoTrabalhoSRepository>().As<IPlanoTrabalhoSRepository>().InstancePerLifetimeScope();
             builder.RegisterType<AssuntoRepository>().As<IAssuntoRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ObjetoRepository>().As<IObjetoRepository>().InstancePerLifetimeScope();
             builder.RegisterType<AgendamentoRepository>().As<IAgendamentoRepository>().InstancePerLifetimeScope();
